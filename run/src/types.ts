@@ -20,14 +20,14 @@ export interface DevToolEnabledSource {
 
 export type SinkProxies<Si> = {[P in keyof Si]: Stream<any>};
 
-export type Driver<Si, So> = {
-  (stream?: Si, driverName?: string): So;
-};
+export type Driver<Si, So> =
+  | ((stream?: Si, driverName?: string) => So)
+  | (() => So);
 
 export type DisposeFunction = () => void;
 
 export type Drivers = {
-  [name: string]: Driver<Stream<any> | void, any | void>;
+  [name: string]: Driver<Stream<any>, any | void>;
 };
 
 export type Main = (...args: Array<any>) => any;
