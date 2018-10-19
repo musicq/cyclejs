@@ -438,10 +438,11 @@ describe('isolation', function() {
       };
     }
 
-    const {sinks, sources, run} = setup(app, {
+    const drivers = {
       DOM: makeDOMDriver(createRenderTarget()),
-      island: sink => {},
-    });
+      island(sink: Stream<Array<Element>>) {},
+    };
+    const {sinks, sources, run} = setup(app, drivers);
 
     sinks.island
       .drop(1)
@@ -669,10 +670,11 @@ describe('isolation', function() {
       };
     }
 
-    const {sinks, sources, run} = setup(IsolatedApp, {
+    const drivers = {
       DOM: makeDOMDriver(createRenderTarget()),
-      triangleElement: sink => {},
-    });
+      triangleElement: (sink: any) => {},
+    };
+    const {sinks, sources, run} = setup(IsolatedApp, drivers);
 
     // Make assertions
     sinks.triangleElement
