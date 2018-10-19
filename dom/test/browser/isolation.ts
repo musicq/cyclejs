@@ -1533,6 +1533,7 @@ describe('isolation', function() {
               return div([]);
             } else {
               done('This case must not happen.');
+              return div();
             }
           });
         return {DOM: vdom$};

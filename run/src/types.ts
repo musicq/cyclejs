@@ -22,7 +22,7 @@ export type SinkProxies<Si> = {[P in keyof Si]: Stream<any>};
 
 export type Driver<Si, So> = Si extends void
   ? (() => So)
-  : ((stream: Si, driverName?: string) => So);
+  : ((stream: Si) => So);
 
 export type DisposeFunction = () => void;
 
@@ -47,7 +47,7 @@ export type MatchingMain<D extends Drivers, M extends Main> =
 export type MatchingDrivers<D extends Drivers, M extends Main> = Drivers &
   {
     [k in string & keyof Sinks<M>]:
-      | ((si?: Sinks<M>[k]) => Sources<D>[k])
+      | (() => Sources<D>[k])
       | ((si: Sinks<M>[k]) => Sources<D>[k])
   };
 
