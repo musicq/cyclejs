@@ -1138,7 +1138,7 @@ describe('isolation', function() {
         .take(4);
       const innerDOM$ = xs
         .combine(x$, child.DOM)
-        .map(([x, childVDOM]) =>
+        .map(([x, childVDOM]: [number, VNode]) =>
           div(`.parent${x}`, {key: `key${x}`}, [childVDOM, `${x}`])
         );
       return {
@@ -1200,7 +1200,7 @@ describe('isolation', function() {
         .take(4);
       const innerDOM$ = xs
         .combine(x$, child.DOM)
-        .map(([x, childVDOM]) =>
+        .map(([x, childVDOM]: [number, VNode]) =>
           div(`.parent${x}`, {key: `key${x}`}, [childVDOM, `${x}`])
         );
       return {
