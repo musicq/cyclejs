@@ -1,5 +1,8 @@
 import {MemoryStream, Stream} from 'xstream';
 import {PreventDefaultOpt} from './fromEvent';
+import {MainDOMSource} from './MainDOMSource';
+import {DocumentDOMSource} from './DocumentDOMSource';
+import {BodyDOMSource} from './BodyDOMSource';
 
 export interface EventsFnOptions {
   useCapture?: boolean;
@@ -8,7 +11,9 @@ export interface EventsFnOptions {
   preventDefault?: PreventDefaultOpt;
 }
 
-export interface DOMSource {
+export type DOMSource = MainDOMSource | DocumentDOMSource | BodyDOMSource; // | MockedDOMSource;
+
+/*export interface DOMSource {
   select(selector: string): DOMSource;
   elements(): MemoryStream<
     Array<Document> | Array<HTMLBodyElement> | Array<Element> | string
@@ -20,4 +25,4 @@ export interface DOMSource {
     bubbles?: boolean
   ): Stream<HTMLElementEventMap[K]>;
   events(eventType: string, options?: EventsFnOptions): Stream<Event>;
-}
+}*/

@@ -40,7 +40,7 @@
     "lint": "tslint --project tsconfig.lint.json --config ../tslint.json",
     "docs": "cd .. && node .scripts/make-api-docs.js dom",
     "changelog": "cd .. && node .scripts/update-changelogs.js dom",
-    "test-node": "TS_NODE_COMPILER_OPTIONS='{\"strictFunctionTypes\": true}' mocha test/node/*.ts --require ts-node/register --exit",
+    "test-node": "mocha test/node/*.ts --require ts-node/register --exit",
     "test-browser": "karma start",
     "test": "pnpm run test-node && pnpm run test-browser",
     "test-ci": "CI=true pnpm test",

@@ -14,7 +14,6 @@ module.exports = function(config) {
         include: {
           values: ['test/typings.d.ts'],
         },
-        tsconfig: './test/tsconfig.json',
       },
     })
   );

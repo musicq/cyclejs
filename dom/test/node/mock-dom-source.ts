@@ -281,7 +281,7 @@ describe('isolation on MockedDOMSource', function() {
   });
 
   it('should prevent parent from DOM.selecting() inside the isolation', function(done) {
-    function app(_sources: {DOM: MockedDOMSource}): any {
+    function app(_sources: {DOM: MockedDOMSource}) {
       const child$ = _sources.DOM.isolateSink(
         of(div('.foo', [h4('.bar', 'Wrong')])),
         'ISOLATION'
