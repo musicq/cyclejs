@@ -1,5 +1,6 @@
 // tslint:disable-next-line
 import 'symbol-observable';
+import {Stream} from 'xstream';
 import * as assert from 'assert';
 import {Observable, of, from, combineLatest} from 'rxjs';
 import {take, skip, map} from 'rxjs/operators';
@@ -13,6 +14,7 @@ import {
   h,
   mockDOMSource,
   MockedDOMSource,
+  VNode,
 } from '../../src/index';
 
 describe('mockDOMSource', function() {
@@ -228,7 +230,7 @@ describe('isolation on MockedDOMSource', function() {
     }
 
     const {sinks, sources, run} = setup(app, {
-      DOM: () =>
+      DOM: (_: Stream<VNode>) =>
         mockDOMSource({
           '.___foo': {
             '.bar': {
@@ -267,7 +269,7 @@ describe('isolation on MockedDOMSource', function() {
     }
 
     const {sinks, sources, run} = setup(app, {
-      DOM: () => mockDOMSource({}),
+      DOM: (_: Stream<VNode>) => mockDOMSource({}),
     });
     const dispose = run();
     const isolatedDOMSource = sources.DOM.isolateSource(sources.DOM, 'foo');
@@ -292,7 +294,7 @@ describe('isolation on MockedDOMSource', function() {
     }
 
     const {sinks, sources, run} = setup(app, {
-      DOM: () =>
+      DOM: (_: Stream<VNode>) =>
         mockDOMSource({
           '.___ISOLATION': {
             '.bar': {

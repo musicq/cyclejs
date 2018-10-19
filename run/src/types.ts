@@ -20,9 +20,9 @@ export interface DevToolEnabledSource {
 
 export type SinkProxies<Si> = {[P in keyof Si]: Stream<any>};
 
-export type Driver<Si, So> =
-  | ((stream?: Si, driverName?: string) => So)
-  | (() => So);
+export type Driver<Si, So> = Si extends void
+  ? (() => So)
+  : ((stream: Si, driverName?: string) => So);
 
 export type DisposeFunction = () => void;
 
